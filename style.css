@@ -1,0 +1,90 @@
+:root {
+  --grid-gap: 8px;
+  --background-color: #033a0b;
+  --cell-color-initial: #06850d;
+  --cell-color-named-html: #5eff00; /* Laranja HTML */
+  --cell-color-revealed: #71ffbd;
+  --text-color-light: #ffffff;
+  --text-color-dark: #000000;
+  --border-color: #dee2e6;
+  --border-radius: 8px;
+}
+
+body {
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: var(--background-color);
+  margin: 0;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+h1 {
+  color: #f8f9fa;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.grid-container {
+  display: grid;
+  width: 100%;
+  max-width: 1400px;
+  grid-template-columns: repeat(10, 1fr);
+  gap: var(--grid-gap);
+}
+
+.cell {
+  aspect-ratio: 1 / 1;
+  width: 100%;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-weight: bold;
+  padding: 5px;
+  box-sizing: border-box;
+  transition:
+    transform 0.3s ease,
+    background-color 0.3s,
+    color 0.3s;
+  user-select: none;
+  background-color: var(--cell-color-initial);
+  color: var(--text-color-light);
+  font-size: clamp(14px, 3vw, 24px);
+}
+
+.cell:not(.revealed):hover {
+  transform: scale(1.05);
+  z-index: 10;
+}
+
+.cell.named.type-html {
+  background-color: var(--cell-color-named-html);
+}
+
+.cell.named {
+  color: var(--text-color-light);
+  font-size: clamp(10px, 1.8vw, 16px);
+  word-break: break-all;
+}
+
+.cell.revealed {
+  background-color: var(--cell-color-revealed);
+  color: var(--text-color-dark);
+  border: 1px solid var(--border-color);
+  font-weight: normal;
+  cursor: default;
+  justify-content: center;
+  align-items: center;
+  padding: 8px;
+  font-size: clamp(9px, 1.2vw, 14px);
+  line-height: 1.2;
+}
